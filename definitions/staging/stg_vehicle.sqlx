@@ -1,0 +1,27 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_vehicle"
+}
+
+SELECT
+    CAST (SUBSTR(requestServerDateTime, 1, length(requestServerDateTime)-2) AS Datetime) AS requestServerDateTime,
+    CAST (customerId AS INT64) As customerId,
+  	vin,
+  	brand,
+  	range_v,
+    model,
+   	gvw,
+    fuelType,
+    engine,
+    traction,
+    wheel,
+    CAST (wheelbase as INT64) AS wheelbase,
+    gearbox,
+    suspension,
+    ecuTechnology,
+  	CAST (ecuIdentifier as INT64) AS ecuIdentifier,
+    ecuSoftwareVersion,
+    continuationToken,
+    plate
+FROM ${ref('raw_vehicle')}

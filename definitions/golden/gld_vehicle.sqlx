@@ -1,0 +1,31 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_vehicle"
+}
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_vehicle')}) 
+}
+
+SELECT
+    requestServerDateTime,
+    customerId,
+  	vin,
+  	brand,
+  	range_v,
+    model,
+   	gvw,
+    fuelType,
+    engine,
+    traction,
+    wheel,
+    wheelbase,
+    gearbox,
+    suspension,
+    ecuTechnology,
+    ecuIdentifier,
+    ecuSoftwareVersion,
+    continuationToken,
+    plate
+FROM ${ref('stg_vehicle')}

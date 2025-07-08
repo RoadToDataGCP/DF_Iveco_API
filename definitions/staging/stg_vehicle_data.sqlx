@@ -1,0 +1,41 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_vehicle_data"
+}
+
+SELECT
+    vin,
+    vehicleSpeedMax,
+    vehicleWeightValueAtStart,
+    tripStartDateTime,
+    tripEndDateTime,
+    occurrenceAEBS,
+    fin,
+    tripId,
+    durationCruiseControl,
+    vehicleLoad,
+    occurrenceEBS ,
+    occurrenceBrakePedalDriving,
+    vehicleSpeedAvg,
+    distanceDrivingWithoutTorque,
+    distanceCruiseControl,
+    accTime,
+    durationDriving ,
+    durationIdling ,
+    durationPTOIdling,
+    ptoTimeEnd ,
+    vehicleWeightValueAtEnd,        
+    totalEngineHours,
+    distanceBrakePedalDriving,
+    odometerStart,
+    odometerEnd,
+    durationPTODriving,
+    safetyAbsOccurrences,
+    safetyAsrBrakeOccurrences,
+    serviceBatteryChargeAtEnd,
+    serviceBatteryVoltageAtEnd,
+    automaticModeTime
+
+
+FROM ${ref('raw_vehicle_data')}
