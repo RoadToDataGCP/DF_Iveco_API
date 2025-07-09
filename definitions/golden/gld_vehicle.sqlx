@@ -1,7 +1,8 @@
 config {
   type: "incremental",
   schema: "golden_iveco",
-  name: "gld_vehicle"
+  name: "gld_vehicle",
+  tags: ["daily"]
 }
 pre_operations {
     DELETE FROM ${self()}

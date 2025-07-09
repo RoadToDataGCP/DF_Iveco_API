@@ -1,7 +1,8 @@
 config {
   type: "incremental",
   schema: "golden_iveco",
-  name: "gld_vehicle_data"
+  name: "gld_vehicle_data",
+  tags: ["daily"]
 }
 
 pre_operations {
