@@ -1,0 +1,14 @@
+config {
+  type: "table",
+  schema: "presentation_iveco",
+  name: "pst_vehicle",
+  tags: ["daily"]
+}
+
+SELECT
+    vin,
+    brand,
+    range_v,
+    model
+
+FROM ${ref('gld_vehicle')}

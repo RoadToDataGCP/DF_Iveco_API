@@ -1,0 +1,15 @@
+config {
+  type: "table",
+  schema: "presentation_iveco",
+  name: "pst_vehicle_data",
+  tags: ["daily"]
+}
+
+SELECT
+    vin,
+    tripStartDateTime,
+    tripEndDateTime,
+    odometerStart,
+    odometerEnd
+
+FROM ${ref('gld_vehicle_data')}
