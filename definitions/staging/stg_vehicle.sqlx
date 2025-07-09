@@ -1,7 +1,8 @@
 config {
   type: "table",
   schema: "staging_iveco",
-  name: "stg_vehicle"
+  name: "stg_vehicle",
+  tags: ["daily"]
 }
 
 SELECT

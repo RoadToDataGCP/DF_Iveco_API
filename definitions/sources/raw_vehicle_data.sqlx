@@ -1,5 +1,5 @@
 config {
   type: "declaration",
   schema: "raw_iveco",
-  name: "raw_vehicle_data",
+  name: "raw_vehicle_data"
 }
