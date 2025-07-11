@@ -7,11 +7,12 @@ config {
 
 pre_operations {
     DELETE FROM ${self()}
-    WHERE (vin, DATE(tripStartDateTime)) IN (
-        SELECT DISTINCT vin, DATE(tripStartDateTime)
+    WHERE (vin, tripStartDateTime) IN (
+        SELECT DISTINCT vin, tripStartDateTime
         FROM ${ref('stg_vehicle_data')}
     )
 }
+
 
 SELECT
     vin,
