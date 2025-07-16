@@ -1,0 +1,17 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_position",
+  tags: ["daily"]
+}
+SELECT
+        vin,
+        geoCoordinate.latitude as geoCoordinateLatitude,
+        geoCoordinate.longitude as geoCoordinateLongitude,
+        geoCoordinate.altitude as geoCoordinateAltitude,
+        geoCoordinate.positionDateTime as geoCoordinatePositionDateTime,
+        keyStatus,
+        requestServerDateTime,
+        vehicleSpeed
+
+FROM ${ref('raw_position')}

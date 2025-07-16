@@ -1,16 +1,9 @@
 config {
-  type: "incremental",
-  schema: "golden_iveco",
-  name: "gld_fault",
+  type: "table",
+  schema: "presentation_iveco",
+  name: "pst_fault",
   tags: ["daily"]
 }
-
-pre_operations {
-    DELETE FROM ${self()}
-    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_fault')})
-    AND  fdt IN (SELECT DISTINCT  fdt FROM ${ref('stg_fault')})
-}
-
 
 SELECT
         description_,
@@ -28,7 +21,6 @@ SELECT
         geoCoordinateAltitude  ,
         geoCoordinatePositionDateTime,
         geoCoordinateLongitude,
-        geoCoordinateLatitude,
-        requestServerDateTime
+        geoCoordinateLatitude
 
-FROM ${ref('stg_fault')}
+FROM ${ref('gld_fault')}
