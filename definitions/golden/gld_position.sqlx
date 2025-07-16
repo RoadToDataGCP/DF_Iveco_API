@@ -1,0 +1,24 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_position",
+  tags: ["daily"]
+}
+
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE 
+    geoCoordinatePositionDateTime IN (SELECT DISTINCT  geoCoordinatePositionDateTime FROM ${ref('stg_position')})
+}
+
+SELECT
+        vin,
+        geoCoordinateLatitude,
+        geoCoordinateLongitude,
+        geoCoordinateAltitude,
+        geoCoordinatePositionDateTime,
+        keyStatus,
+        requestServerDateTime,
+        vehicleSpeed
+
+FROM ${ref('stg_position')}
