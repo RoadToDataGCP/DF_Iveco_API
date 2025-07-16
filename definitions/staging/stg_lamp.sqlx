@@ -1,0 +1,26 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_lamp",
+  tags: ["daily"]
+}
+
+SELECT
+        name as name_,
+        status as status_,
+        vin,
+        fdt,
+        fnt,
+        engineSpeed,
+        engineTorque,
+        engineFuelTemperature,
+        odometer,
+        vehicleSpeed,
+        geoCoordinate.latitude as geoCoordinateLatitude,
+        geoCoordinate.longitude as geoCoordinateLongitude,
+        geoCoordinate.altitude as geoCoordinateAltitude,
+        geoCoordinate.positionDateTime as geoCoordinatePositionDateTime,
+        requestServerDateTime
+
+
+FROM ${ref('raw_lamp')}

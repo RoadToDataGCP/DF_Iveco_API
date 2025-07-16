@@ -1,0 +1,26 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_fault",
+  tags: ["daily"]
+}
+SELECT
+        description AS description_,
+        oc,
+        spn,
+        fmi,
+        vin,
+        fdt,
+        fnt,
+        engineSpeed,
+        engineTorque,
+        engineFuelTemperature,
+        odometer,
+        vehicleSpeed,
+        geoCoordinate.altitude as geoCoordinateAltitude  ,
+        geoCoordinate.positionDateTime as geoCoordinatePositionDateTime,
+        geoCoordinate.longitude as geoCoordinateLongitude,
+        geoCoordinate.latitude as geoCoordinateLatitude,
+        requestServerDateTime,
+
+FROM ${ref('raw_fault')}

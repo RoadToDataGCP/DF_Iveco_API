@@ -1,0 +1,34 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_lamp",
+  tags: ["daily"]
+}
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_lamp')})
+    AND  name_ IN (SELECT DISTINCT  name_  FROM ${ref('stg_lamp')})
+    AND  fnt IN (SELECT DISTINCT  fnt  FROM ${ref('stg_lamp')})
+    AND  fdt IN (SELECT DISTINCT  fdt  FROM ${ref('stg_lamp')})
+    AND  geoCoordinatePositionDateTime IN (SELECT DISTINCT  geoCoordinatePositionDateTime FROM ${ref('stg_lamp')})
+}
+
+SELECT
+        name_,
+        status_,
+        vin,
+        fdt,
+        fnt,
+        engineSpeed,
+        engineTorque,
+        engineFuelTemperature,
+        odometer,
+        vehicleSpeed,
+        geoCoordinateLatitude,
+        geoCoordinateLongitude,
+        geoCoordinateAltitude,
+        geoCoordinatePositionDateTime,
+        requestServerDateTime
+
+
+FROM ${ref('stg_lamp')}

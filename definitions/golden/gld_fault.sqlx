@@ -1,0 +1,37 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_fault",
+  tags: ["daily"]
+}
+
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_fault')})
+    AND  spn IN (SELECT DISTINCT  spn  FROM ${ref('stg_fault')})
+    AND  fmi IN (SELECT DISTINCT  fmi  FROM ${ref('stg_fault')})
+    AND  fdt IN (SELECT DISTINCT  fdt  FROM ${ref('stg_fault')})
+    AND  geoCoordinatePositionDateTime IN (SELECT DISTINCT  geoCoordinatePositionDateTime FROM ${ref('stg_fault')})
+}
+
+
+SELECT
+        description_,
+        oc,
+        spn,
+        fmi,
+        vin,
+        fdt,
+        fnt,
+        engineSpeed,
+        engineTorque,
+        engineFuelTemperature,
+        odometer,
+        vehicleSpeed,
+        geoCoordinateAltitude  ,
+        geoCoordinatePositionDateTime,
+        geoCoordinateLongitude,
+        geoCoordinateLatitude,
+        requestServerDateTime
+
+FROM ${ref('stg_fault')}

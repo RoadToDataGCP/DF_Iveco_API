@@ -1,0 +1,44 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_event",
+  tags: ["daily"]
+}
+
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_event')})
+    AND  tripEventDateTime IN (SELECT DISTINCT  tripEventDateTime  FROM ${ref('stg_event')})
+    AND  tripStartDateTime IN (SELECT DISTINCT  tripStartDateTime  FROM ${ref('stg_event')})
+
+}
+
+SELECT
+        vin,
+        tripId,
+        driverId,
+        notificationReason,
+        progId,
+        tripStartDateTime,
+        tripEventDateTime,
+        geoCoordinateLatitude,
+        geoCoordinateLongitude,
+        geoCoordinateAltitude,
+        geoCoordinatePositionDateTime,
+        odometerAtEvent,
+        odometerAtStart,
+        fuelConsumption,
+        vehicleSpeed,
+        engineSpeed,
+        engineTemperature,
+        engineTorque,
+        fuelSavingScore,
+        totalLiterAtEvent,
+        totalLiterAtStart,
+        fuelLevelAtEvent,
+        fuelLevelAtStart,
+        engineHoursAtEvent,
+        engineHoursAtStart,
+        requestServerDateTime
+
+FROM ${ref('stg_event')}
