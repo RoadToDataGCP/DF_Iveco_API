@@ -1,0 +1,70 @@
+config {
+  type: "incremental",
+  schema: "golden_iveco",
+  name: "gld_summary",
+  tags: ["daily"]
+}
+
+pre_operations {
+    DELETE FROM ${self()}
+    WHERE vin  IN (SELECT DISTINCT vin  FROM ${ref('stg_summary')})
+    AND  tripStartDateTime IN (SELECT DISTINCT  tripStartDateTime  FROM ${ref('stg_summary')})
+}
+
+SELECT
+        vin,
+        tripStartDateTime,
+        tripEndDateTime,
+        odometerStart,
+        odometerEnd,
+        tripId,
+        driverId, 
+        degreeOfDifficulty,
+        degreeOfDifficultyMissionSeverity,
+        degreeOfDifficultySpeedProfile,
+        degreeOfDifficultyAltimetry,
+        degreeOfDifficultyTwisting,
+        degreeOfDifficultyAtmosphericConditions,
+        degreeOfDifficultyVehicleLoad,
+        vehicleCare,
+        vehicleCareTireProtection,
+        vehicleCareAuxiliaryBrake,
+        requestServerDateTime,
+        safety_ ,
+
+        geoCoordinateLatitude,
+        geoCoordinateLongitude,
+        geoCoordinateAltitude,
+        geoCoordinatePositionDateTime,
+
+        dseSummaryDieselNPFuelSaving ,
+        dseSummaryDieselNPFuelSavingDeceleration ,
+        dseSummaryDieselNPFuelSavingAcceleration,
+        dseSummaryDieselNPFuelSavingInertia,
+        dseSummaryDieselNPFuelSavingStopApproach,
+        dseSummaryDieselNPFuelSavingEngineUse,
+        dseSummaryDieselNPFuelConsumption,
+        dseSummaryDieselNPFuelLevelStart,
+        dseSummaryDieselNPFuelLevelEnd,
+        dseSummaryDieselNPTotalFuelStart,
+        dseSummaryDieselNPTotalFuelEnd,
+
+        dseSummaryElectric_scoreEnergy ,
+        dseSummaryElectric_hiPowerBenefit ,
+        dseSummaryElectric_energyManagementBenefit,
+        dseSummaryElectric_energyAcceleration,
+        dseSummaryElectric_energyRegeneration,
+        dseSummaryElectric_energyStopApproach,
+        dseSummaryElectric_energyManagement,
+        dseSummaryElectric_deceleration,
+        dseSummaryElectric_tractionSwitch,
+        dseSummaryElectric_airConditioning,
+        dseSummaryElectric_accelerationStyleBenefit,
+        dseSummaryElectric_decelerationStyleBenefit,
+        dseSummaryElectric_regenerationBenefit,
+        dseSummaryElectric_stopApproachBenefit,
+        dseSummaryElectric_tractionBenefit,
+        dseSummaryElectric_regeneration,
+        dseSummaryElectric_stopApproach
+
+FROM ${ref('stg_summary')}

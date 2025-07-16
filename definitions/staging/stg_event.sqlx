@@ -1,0 +1,35 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_event",
+  tags: ["daily"]
+}
+SELECT
+        vin,
+        tripId,
+        driverId,
+        notificationReason,
+        progId,
+        tripStartDateTime,
+        tripEventDateTime,
+        geoCoordinate.latitude as geoCoordinateLatitude,
+        geoCoordinate.longitude as geoCoordinateLongitude,
+        CAST (geoCoordinate.altitude as FLOAT64) as geoCoordinateAltitude,
+        geoCoordinate.positionDateTime as geoCoordinatePositionDateTime,
+        odometerAtEvent,
+        odometerAtStart,
+        fuelConsumption,
+        vehicleSpeed,
+        engineSpeed,
+        engineTemperature,
+        engineTorque,
+        fuelSavingScore,
+        totalLiterAtEvent,
+        totalLiterAtStart,
+        fuelLevelAtEvent,
+        fuelLevelAtStart,
+        engineHoursAtEvent,
+        engineHoursAtStart,
+        requestServerDateTime
+
+FROM ${ref('raw_Event')}
