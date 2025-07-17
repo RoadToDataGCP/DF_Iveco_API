@@ -1,5 +1,6 @@
 config {
   type: "declaration",
+  database: "r2d-interno-dev",
   schema: "raw_iveco",
   name: "raw_fault"
 }
