@@ -1,5 +1,6 @@
 config {
   type: "incremental",
+  database: "r2d-interno-pro",
   schema: "golden_iveco",
   name: "gld_lamp",
   tags: ["daily"]
