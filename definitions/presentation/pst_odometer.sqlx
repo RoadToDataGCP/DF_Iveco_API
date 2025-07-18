@@ -1,0 +1,23 @@
+config {
+  type: "table",
+  schema: "presentation_iveco",
+  name: "pst_odometer",
+  tags: ["daily"]
+}
+
+SELECT
+  vin,
+  odometerEnd / 1000.0 AS max_odometer_km,
+  tripEndDateTime
+FROM (
+  SELECT
+    vin,
+    odometerEnd,
+    tripEndDateTime,
+    ROW_NUMBER() OVER (PARTITION BY vin ORDER BY odometerEnd DESC) AS row_num
+    FROM ${ref('gld_summary')}
+  WHERE
+    odometerEnd IS NOT NULL AND odometerEnd != -1
+)
+
+WHERE row_num = 1
