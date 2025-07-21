@@ -10,7 +10,7 @@ SELECT
         geoCoordinate.longitude as geoCoordinateLongitude,
         geoCoordinate.altitude as geoCoordinateAltitude,
         geoCoordinate.positionDateTime as geoCoordinatePositionDateTime,
-        keyStatus,
+        CAST (keyStatus As STRING) AS keyStatus,
         requestServerDateTime,
         vehicleSpeed
 
