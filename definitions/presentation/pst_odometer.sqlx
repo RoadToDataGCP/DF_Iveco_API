@@ -7,8 +7,8 @@ config {
 
 SELECT
   vin,
-  odometerEnd / 1000.0 AS max_odometer_km,
-  tripEndDateTime
+  odometerEnd / 1000.0 AS odometer_km,
+  tripEndDateTime AS date_
 FROM (
   SELECT
     vin,
