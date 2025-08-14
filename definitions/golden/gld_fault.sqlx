@@ -13,11 +13,11 @@ pre_operations {
 
 
 SELECT
+        vin,
         description_,
         oc,
         spn,
         fmi,
-        vin,
         fdt,
         fnt,
         engineSpeed,

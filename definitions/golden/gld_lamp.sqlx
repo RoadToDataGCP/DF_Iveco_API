@@ -13,9 +13,9 @@ pre_operations {
 
 
 SELECT
+        vin,
         name_,
         status_,
-        vin,
         fdt,
         fnt,
         engineSpeed,
