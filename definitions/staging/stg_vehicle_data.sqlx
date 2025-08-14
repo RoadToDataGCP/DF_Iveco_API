@@ -34,7 +34,7 @@ SELECT
     durationPTODriving,
     safetyAbsOccurrences,
     safetyAsrBrakeOccurrences,
-    serviceBatteryChargeAtEnd,
+    CAST(ROUND(serviceBatteryChargeAtEnd) AS INT64) AS serviceBatteryChargeAtEnd,
     serviceBatteryVoltageAtEnd,
     automaticModeTime
 
