@@ -10,9 +10,9 @@ pre_operations {
 }
 
 SELECT
+  	vin,
     requestServerDateTime,
     customerId,
-  	vin,
   	brand,
   	range_v,
     model,
