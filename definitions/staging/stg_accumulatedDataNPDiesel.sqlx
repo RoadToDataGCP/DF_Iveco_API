@@ -1,0 +1,16 @@
+config {
+  type: "table",
+  schema: "staging_iveco",
+  name: "stg_accumulatedDataNPDiesel",
+  tags: ["daily"]
+}
+
+SELECT
+    vin,
+    tripStartDateTime,
+    tripEndDateTime,
+    accumulatedDataNPDiesel.engineTotalHoursAtEnd
+
+
+FROM ${ref('raw_vehicle_data')}
+
