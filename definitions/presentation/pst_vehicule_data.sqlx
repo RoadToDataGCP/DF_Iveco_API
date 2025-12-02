@@ -10,6 +10,8 @@ SELECT
     tripStartDateTime,
     tripEndDateTime,
     odometerStart,
-    odometerEnd
+    odometerEnd,
+    totalEngineHours,
+    engineTotalHoursAtEnd
 
 FROM ${ref('gld_vehicle_data')}
